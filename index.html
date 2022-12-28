@@ -12,6 +12,7 @@
                     <div class="form-group">
                         <label for="">Product Name</label>
                         <input type="text" id="productName" class="form-control" required>
+                        <p id="errMsgProductName"></p>
                     </div>
                     <br>
                     <div class="form-group">
@@ -36,8 +37,11 @@
                 var productName = document.getElementById('productName').value;
                 //IF runs only when error is occurred 
                 if(!productName.length > 0) {
-                    console.log('Please enter the product name');
+                    document.getElementById('errMsgProductName').innerHTML = 'Please enter the product name';
                     return;
+                }
+                else {
+                    document.getElementById('errMsgProductName').innerHTML = '';
                 }
 
                 var price = document.getElementById('price').value;
