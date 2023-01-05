@@ -37,5 +37,5 @@ if($query) {
 else {
     echo "<script>alert(' Data could not be saved!')";
 }
-header("refresh:1;url=../index.html");
+header("refresh:1;url=../index.php");
 
