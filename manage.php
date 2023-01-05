@@ -27,27 +27,32 @@ $query = mysqli_query($conn, $sql);
                 </tr>
             </thead>
             <tbody>
-                <?php 
-                while($row = mysqli_fetch_assoc($query)){
-                    
-                    echo "<tr><td>".$row["id"]."</td>";
-                        
-                        echo "<td>".$row["product_name"]."</td>";
-                        echo "<td>".$row["price"]."</td>";
-                        echo "<td>".$row["qty"]."</td>";
-                        echo "<td>
-                            <button class='btn btn-danger'>Delete</button>
-                            <button class='btn btn-warning'>Edit</button>
-                        </td></tr>";
-                    }
-                    ?>
+                <?php
+                
+                if(mysqli_num_rows($query) >= 1) {
+                    $sr = 1;
+                    while($row = mysqli_fetch_assoc($query)){
+                        echo "<tr><td>".$sr."</td>";
+                            echo "<td>".$row["product_name"]."</td>";
+                            echo "<td>".$row["price"]."</td>";
+                            echo "<td>".$row["qty"]."</td>";
+                            echo "<td>
+                                <button class='btn btn-danger' onclick='deleteProduct(".$row["id"].")'>Delete</button>
+                                <button class='btn btn-warning'>Edit</button>
+                            </td></tr>";
+                            $sr++;
+                        }    
+                }
+                else {
+                    echo "<tr><td class='text-center' colspan='5'>No data founds <a href='index.php'>Add Now</a></td></tr>";
+                }
+                ?>
                 </tbody>
             </table>
         </div>
         
         
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
-        <script src="scripts/index.js"></script>
+        <script src="scripts/functions.js"></script>
     </body>
     </html>
-    
